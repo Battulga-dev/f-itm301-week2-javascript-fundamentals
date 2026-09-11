@@ -150,6 +150,24 @@ console.log("Scores:", studentScores);
 console.log("Number of students passed:", passCount);
 console.log("Percentage passed:", passPercentage + "%");
 
+// Part 6 — Additional test cases
+console.log("--- Part 6: Additional Tests ---");
+
+function countPassing(scores) {
+  let count = 0;
+  for (let i = 0; i < scores.length; i++) {
+    if (scores[i] >= 60) {
+      count++;
+    }
+  }
+  const percentage = (count / scores.length) * 100;
+  console.log("Scores:", scores, "→ Passed:", count, "(" + percentage + "%)");
+}
+
+countPassing([60, 70, 80, 90, 100]); // Expected: 5 passed, 100%
+countPassing([10, 20, 30, 40, 50]);  // Expected: 0 passed, 0%
+countPassing([59, 60, 61, 0, 100]);  // Expected: 3 passed, 60%
+
 // ===== Part 7 —  =====
 
 // Хувьсагчийн scope-ийн тайлбар:
