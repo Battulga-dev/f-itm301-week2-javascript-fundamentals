@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg-1: #070b18;
+  --bg-2: #1b1f52;
+  --accent-cyan: #22d3ee;
+  --accent-violet: #a78bfa;
+  --accent-pink: #f0abfc;
+  --text-main: #f8fafc;
+  --text-soft: #a5b4cf;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--text-main);
+  overflow-x: hidden;
+  background-color: var(--bg-1);
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(34, 211, 238, 0.32), transparent 32%),
+    radial-gradient(circle at 88% 82%, rgba(139, 92, 246, 0.36), transparent 34%),
+    radial-gradient(circle at 50% 120%, rgba(240, 171, 252, 0.2), transparent 40%),
+    linear-gradient(140deg, var(--bg-1) 5%, var(--bg-2) 100%);
+  background-attachment: fixed;
+}
+
+/* Subtle animated glow that drifts behind the card */
+body::before {
+  content: '';
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(34, 211, 238, 0.18), transparent 45%),
+    radial-gradient(circle at 70% 70%, rgba(167, 139, 250, 0.2), transparent 45%);
+  animation: drift 18s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(-3%, -2%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(3%, 2%, 0) scale(1.08);
+  }
+}
+
+main {
+  position: relative;
+  width: min(100%, 720px);
+  padding: clamp(42px, 9vw, 84px) clamp(28px, 8vw, 76px);
+  text-align: center;
+  background: rgba(12, 18, 38, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 32px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  overflow: hidden;
+}
+
+/* Gradient hairline running along the top edge of the card */
+main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet), var(--accent-pink));
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 7px 16px;
+  border: 1px solid rgba(103, 232, 249, 0.35);
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.09);
+  color: var(--accent-cyan);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.18);
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  line-height: 1.06;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  background: linear-gradient(100deg, #67e8f9 0%, #c4b5fd 48%, #f0abfc 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s ease-in-out infinite alternate;
+  text-wrap: balance;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+/* Accessibility: respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  main,
+  h1 {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 16px;
+  }
+
+  main {
+    border-radius: 24px;
+  }
+}
